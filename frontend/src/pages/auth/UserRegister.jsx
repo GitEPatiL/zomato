@@ -1,13 +1,32 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const UserRegister = () => {
+
+  const [formData,setFormData]= useState({
+    name:"",
+    email:"",
+    password:""
+  })
+
+  const handleRegister = async (e)=>{
+
+    e.preventDefault();
+
+    const userData = formData;
+
+    console.log(userData)
+
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 via-white to-red-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center p-4">
       {/* Background blobs */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-orange-400/20 dark:bg-orange-500/10 blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-red-400/20 dark:bg-red-500/10 blur-3xl" />
       </div>
+
 
       <div className="w-full max-w-md">
         <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 rounded-3xl shadow-2xl shadow-orange-100/50 dark:shadow-black/40 p-8">
@@ -38,6 +57,9 @@ const UserRegister = () => {
                 <input
                   type="text"
                   name="fullName"
+                  onChange={(e)=>setFormData({
+                    ...formData,[e.target.name]:e.target.value
+                  })}
                   placeholder="Enter Your Name .."
                   className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 dark:focus:border-orange-400 transition-all duration-200"
                 />
@@ -56,6 +78,9 @@ const UserRegister = () => {
                 <input
                   type="email"
                   name="email"
+                  onChange={(e)=>setFormData({
+                    ...formData,[e.target.name]:e.target.value
+                  })}
                   placeholder="you@example.com"
                   className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 dark:focus:border-orange-400 transition-all duration-200"
                 />
@@ -74,6 +99,9 @@ const UserRegister = () => {
                 <input
                   type="password"
                   name="password"
+                  onChange={(e)=>{
+                    setFormData({...formData, [e.target.name]:e.target.value})
+                  }}
                   placeholder="Create a strong password"
                   className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 dark:focus:border-orange-400 transition-all duration-200"
                 />
@@ -110,8 +138,10 @@ const UserRegister = () => {
 
             {/* Submit */}
             <button
+              on
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold text-sm shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
+              onSubmit={handleRegister}
+              className="w-full py-3.5 rounded-xl bg-linear-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold text-sm shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
             >
               Create Account
             </button>
